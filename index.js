@@ -32,6 +32,7 @@ module.exports = {
     } catch (err) {
       console.log(err);
     }
+    return data;
   },
 
   // get current salt prase
