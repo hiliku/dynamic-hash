@@ -1,0 +1,11 @@
+{
+  "name": "dynamic-hash",
+  "version": "1.0.0",
+  "description": "Generate a dynamic hash with random salt (hourly, daily and monthly created)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Yehiel Amar",
+  "license": "ISC"
+}
