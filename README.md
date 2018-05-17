@@ -1,4 +1,4 @@
 # Dynamic Hash lib
 
 # License
-ISC
+GNU
