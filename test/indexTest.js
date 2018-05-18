@@ -1,38 +1,39 @@
 const dynamicHash = require("../index");
 const assert = require("chai").assert;
 
-describe("Dynamic-Hash", () => {
-  const genSalt = await dynamicHash.genSalt();
+describe("Dynamic-Hash Testing", () => {
+  const value = 'test value to hash';
   it("Succesfully create a salt object at ./salt/prase.json", async () => {
+    // generate a salt object at ./salt/prase.json
+    const genSalt = await dynamicHash.genSalt();
+    // ---> Returns the salt object
     assert.typeOf(genSalt, "object");
   });
-  it("Succesfully get the current salt value from ./salt/prase.json", async () => {
+  it("Get the current salt value from ./salt/prase.json", async () => {
+    const salt = await dynamicHash.getSalt();
     assert.typeOf(salt, "string");
   });
+
   it("Testing if salt is equal to current salt at ./salt/prase.json", async () => {
+    const genSalt = await dynamicHash.genSalt();
+    const salt = await dynamicHash.getSalt();
     assert.equal(salt, genSalt.salt);
+  });
+
+  it("Testing if a given value is equal to a given hash", async () => {
+    const salt = await dynamicHash.getSalt();
+    // encrypting the given value
+    const encrypted = await dynamicHash.hashVal(value, salt);
+    // checking given value versus the encrypted value
+    const check = await dynamicHash.checkVal(value, encrypted, salt);
+    // ---> Returns Boolean
+    assert.isTrue(check);
   });
 });
 
 // test = (async () => {
 //   const value = "test";
 
-//   // generating new salt at ./salt/ folder
-//   console.log(`-- Gen new salt -->`);
-//   console.log(`salt value:  ${JSON.stringify(genSalt)}`)
-
-//   // get current salt value
-//   console.log(`-- Get current salt -->`);
-//   const salt = await dynamicHash.getSalt();
-//   console.log(`-- current salt: ${salt}`);
-
-//   // testing if salt is equal to current salt at ./salt/prase.json
-//   try {
-//     assert.deepEqual(genSalt.salt,salt)
-//   } catch (e) {
-//     console.log(`!!!!! ${e}`)
-//     return;
-//   }
 //   console.log(`-- Encrypt value with current salt -->`);
 //   const encrypted = await dynamicHash.hashVal(value, salt);
 //   console.log(`-- Encrypted value: ${encrypted}`);
