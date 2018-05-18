@@ -19,6 +19,7 @@ describe("Dynamic-Hash Testing", () => {
     assert.isObject(genSalt);
   });
   it("Get the current salt value from ./salt/prase.json", () => {
+    assert.lengthOf(salt,64);
     assert.typeOf(salt, "string");
   });
 
@@ -42,6 +43,7 @@ describe("Dynamic-Hash Async Testing", async () => {
   });
   it("Get the current salt value from ./salt/prase.json", async () => {
     const salt = await dynamicHash.getSaltSync(); // ---> Returns salt
+    assert.lengthOf(salt,64);
     assert.typeOf(salt, "string");
   });
 
