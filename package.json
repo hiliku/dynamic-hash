@@ -1,6 +1,6 @@
 {
   "name": "dynamic-hash",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Generate a dynamic hash with random salt (hourly, daily and monthly created)",
   "main": "index.js",
   "scripts": {
