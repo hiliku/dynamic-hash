@@ -12,7 +12,11 @@ Generate a dynamic hash with random salt (hourly, daily and monthly created)
     // and return back the object 
     // Located in ./salt/ folder
     // 
-    // Object example: { "salt":"179fb28f85137a00aeef89f80546207dea93f45af04e5efff8b4c00885b827d3", "time":1526541909196 }
+    // Object example: 
+    //        { 
+    //            "salt":"179fb28f85137a00aeef89f80546207dea93f45af04e5efff8b4c00885b827d3", 
+    //            "time":1526541909196 
+    //        }
 
     // Get current salt
     const salt = await dynamicHash.getSalt();
@@ -39,6 +43,20 @@ Generate a dynamic hash with random salt (hourly, daily and monthly created)
     // value = value to compare
     // hash = hash to decrypt
     // salt = current salt   
+```
+## Testing
+```javascript
+  const value = "test";
+  const genSalt = await dynamicHash.genSalt();
+  console.log(`-- Gen new salt --> ${JSON.stringify(genSalt)}`);
+  const salt = await dynamicHash.getSalt();
+  console.log(`-- Get current salt --> ${salt}`);
+  const encrypted = await dynamicHash.hashVal(value, salt);
+  console.log(`-- Returns an hash string of the given value with the salt --> ${encrypted}`);
+  const check = await dynamicHash.checkVal(value, encrypted, salt);
+  console.log(`-- Check if given value is equal to hash string --> ${check}`);
+  const decrypted = await dynamicHash.getVal(encrypted, salt);
+  console.log(`-- Cipher the hash with the current salt --> '${decrypted}' should be equal as '${value}'`);
 ```
 ## License
 GNU
