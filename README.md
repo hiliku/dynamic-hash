@@ -2,7 +2,8 @@
 Generate a dynamic hash with random salt.
 
 With Dynamic-Hash you can genrate local random salt, encrypt/decrypt and compare values with it.
-The package will generate a random salt object on local file-system and provide simple access and methods to encrypt/decrypt requested data.
+The package will generate a random salt object on local file-system and provide simple access and methods to encrypt/decrypt requested data with Advanced Encryption Standard (AES) of 256 bits.
+
 
 ## Instalation
 Using npm:
