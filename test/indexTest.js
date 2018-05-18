@@ -1,11 +1,11 @@
-const dynamicHash = require("../in");
+const dynamicHash = require("../index");
 const assert = require("chai").assert;
 
 
 describe('Dynamic-Hash',() =>{
-  it('Should succesfully create a salt object at ./salt/prase.json', () => {
+  it('Succesfully create a salt object at ./salt/prase.json', async () => {
     const genSalt = await dynamicHash.genSalt();
-    assert.typeOf(genSalt.salt,'String')
+    assert.typeOf(genSalt.salt,'string')
   })
 })
 
