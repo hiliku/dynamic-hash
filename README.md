@@ -10,6 +10,12 @@ Using npm:
     $ npm i --save dynamic-hash 
 ```
 
+## Testing
+Testing via mocha and chai:
+```javascript
+    $ npm run test
+```
+
 ## How to use
 ```javascript
     const dynamicHash = require('dynamic-hash');
@@ -53,10 +59,6 @@ Using npm:
     // hash = hash to decrypt
     // salt = current salt   
 ```
-## Testing
-Testing via mocha and chai:
-```javascript
-    $ npm run test
-```
+
 ## License
 GNU
