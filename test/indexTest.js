@@ -1,13 +1,18 @@
 const dynamicHash = require("../index");
 const assert = require("chai").assert;
 
-
-describe('Dynamic-Hash',() =>{
-  it('Succesfully create a salt object at ./salt/prase.json', async () => {
-    const genSalt = await dynamicHash.genSalt();
-    assert.typeOf(genSalt.salt,'string')
-  })
-})
+describe("Dynamic-Hash", () => {
+  const genSalt = await dynamicHash.genSalt();
+  it("Succesfully create a salt object at ./salt/prase.json", async () => {
+    assert.typeOf(genSalt, "object");
+  });
+  it("Succesfully get the current salt value from ./salt/prase.json", async () => {
+    assert.typeOf(salt, "string");
+  });
+  it("Testing if salt is equal to current salt at ./salt/prase.json", async () => {
+    assert.equal(salt, genSalt.salt);
+  });
+});
 
 // test = (async () => {
 //   const value = "test";
@@ -31,11 +36,11 @@ describe('Dynamic-Hash',() =>{
 //   console.log(`-- Encrypt value with current salt -->`);
 //   const encrypted = await dynamicHash.hashVal(value, salt);
 //   console.log(`-- Encrypted value: ${encrypted}`);
-  
+
 //   console.log(`-- Check if given value is equal to hash string -->`);
 //   const check = await dynamicHash.checkVal(value, encrypted, salt);
 
-//   // testing if a given value is equal to a given hash 
+//   // testing if a given value is equal to a given hash
 //   try {
 //     assert.ok(check)
 //   } catch (e) {
