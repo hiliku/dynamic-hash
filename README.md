@@ -1,5 +1,14 @@
 # Dynamic Hash lib
-Generate a dynamic hash with random salt (hourly, daily and monthly created)
+Generate a dynamic hash with random salt.
+
+With Dynamic-Hash you can genrate local random salt, encrypt/decrypt and compare values with it.
+The package will generate a random salt object on local file-system and provide simple access and methods to encrypt/decrypt requested data.
+
+## Instalation
+Using npm:
+```javascript
+    $ npm i --save dynamic-hash 
+```
 
 ## How to use
 ```javascript
@@ -46,6 +55,10 @@ Generate a dynamic hash with random salt (hourly, daily and monthly created)
 ```
 ## Testing
 ```javascript
+
+    const dynamicHash = require('dynamic-hash');
+    const assert = require("assert");
+
     const value = "test";
 
     // generating new salt at ./salt/ folder
