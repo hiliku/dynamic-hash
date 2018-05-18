@@ -1,20 +1,16 @@
-const hash = require("./index");
+const dynamicHash = require("./index");
 const assert = require("assert");
 
 test = (async () => {
-  const val = "test";
-  const genSalt = await hash.genSalt();
+  const value = "test";
+  const genSalt = await dynamicHash.genSalt();
   console.log(`-- Gen new salt --> ${JSON.stringify(genSalt)}`);
-  const salt = await hash.getSalt();
+  const salt = await dynamicHash.getSalt();
   console.log(`-- Get current salt --> ${salt}`);
-  const str = await hash.hashVal(val, salt);
-  console.log(
-    `-- Returns an hash string of the given value with the salt --> ${str}`
-  );
-  const check = await hash.checkVal(val, str, salt);
+  const encrypted = await dynamicHash.hashVal(value, salt);
+  console.log(`-- Returns an hash string of the given value with the salt --> ${encrypted}`);
+  const check = await dynamicHash.checkVal(value, encrypted, salt);
   console.log(`-- Check if given value is equal to hash string --> ${check}`);
-  const cipher = await hash.getVal(str, salt);
-  console.log(
-    `-- Cipher the hash with the current salt --> '${cipher}' should be equal as '${val}'`
-  );
+  const decrypted = await dynamicHash.getVal(encrypted, salt);
+  console.log(`-- Cipher the hash with the current salt --> '${decrypted}' should be equal as '${value}'`);
 })();
