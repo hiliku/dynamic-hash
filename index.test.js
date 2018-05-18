@@ -1,5 +1,10 @@
 const dynamicHash = require("./index");
-const assert = require("assert");
+const assert = require("chai").assert;
+
+
+describe('Dynamic-Hash',() =>{
+
+})
 
 test = (async () => {
   const value = "test";
