@@ -26,10 +26,10 @@ const dynamicHash = require('dynamic-hash');
 const saltObject = dynamicHash.genSalt();
 const saltObjectSync = await dynamicHash.genSaltSync(); // Asyncronically
 // Returned salt Object example: 
-// { 
-//   "salt":"179fb28f85137a00aeef89f80546207dea93f45af04e5efff8b4c00885b827d3", 
-//   "time":1526541909196 
-// }
+//  { 
+//      "salt":"179fb28f85137a00aeef89f80546207dea93f45af04e5efff8b4c00885b827d3", 
+//      "time":1526541909196 
+//  }
 
 // Get current salt
 const salt = dynamicHash.getSalt();
