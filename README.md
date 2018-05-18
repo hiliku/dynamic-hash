@@ -18,22 +18,18 @@ $ npm run test
 ```
 
 ## How to use
+Dynamic-Hash will generate new prase.json file that contains salt json object and return back the salt object located in ./salt/ folder.
 ```javascript
 const dynamicHash = require('dynamic-hash');
-
-// Dynamic-Hash will generate new prase.json file that contains salt json object
-// and return back the object 
-// Located in ./salt/ folder
-
-// Object example: 
-//        { 
-//            "salt":"179fb28f85137a00aeef89f80546207dea93f45af04e5efff8b4c00885b827d3", 
-//            "time":1526541909196 
-//        }
 
 // Creating new salt
 const saltObject = dynamicHash.genSalt();
 const saltObjectSync = await dynamicHash.genSaltSync(); // Asyncronically
+// Returned salt Object example: 
+//        { 
+//            "salt":"179fb28f85137a00aeef89f80546207dea93f45af04e5efff8b4c00885b827d3", 
+//            "time":1526541909196 
+//        }
 
 // Get current salt
 const salt = dynamicHash.getSalt();
