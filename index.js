@@ -62,10 +62,10 @@ module.exports = {
   },
 
   // compare two values with given salt
-  checkVal: async (val, hashVal, salt) => {
-    const hash = crypto.createCipher(method, salt);
-    let data = hash.update(val, 'utf-8', 'hex');
-    data += hash.final('hex');
-    return data == hashVal;
+  checkVal: async (value, hash, salt) => {
+    const cipher = crypto.createCipher(method, salt);
+    let data = cipher.update(value, 'utf-8', 'hex');
+    data += cipher.final('hex');
+    return data == hash;
   }
 };
