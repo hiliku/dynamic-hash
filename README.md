@@ -63,4 +63,4 @@ const compareSync = await dynamicHash.checkValSync(value, hash, salt); // Asyncr
 ```
 
 ## License
-GNU
+GNU GPLv3

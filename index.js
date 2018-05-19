@@ -2,7 +2,8 @@
 const crypto = require("crypto");
 const fs = require("fs");
 
-const saltFile = "./salt/prase.json";
+const saltFolder = './salt/'; 
+const saltFile = `${saltFolder}prase.json`;
 const method = "aes-256-cbc";
 
 // generate random hash string by timestamp
@@ -25,7 +26,10 @@ module.exports = {
     try {
       fs.unlinkSync(saltFile);
     } catch (err) {
-      console.log("no such file");
+      if (!fs.existsSync(saltFolder)) {
+        console.log('-- ./salt/ Directory does not exist, generating...');
+        fs.mkdirSync(saltFolder);
+      }
     }
     // create local prase file with new salt
     try {
