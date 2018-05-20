@@ -61,6 +61,22 @@ const compareSync = await dynamicHash.compareSync(value, hash, salt); // Asyncro
 // hash = hash to decrypt
 // salt = current salt   
 ```
+## Funcionality
+**Method** | **Description** 
+--- | --- 
+genSalt() / genSaltSync() | Creating new local salt Object, will be stored in './salt/prase.json' path.
+getSalt() / getSaltSync() | Getting the current salt key.
+encrypt(value, salt) / encryptSync(value, salt) | Encrypt given value with current salt.
+decrypt(value, salt) / decryptSync(value, salt) | Decrypt given hash from current salt.
+compare(value, hash, salt) / compareSync(value, hash, salt) | Compare value and hash with given salt.
 
+
+## Examples
+To run the examples:
+```javascript
+$ node examples/example-secure.js
+$ node examples/example-migrate.js
+
+```
 ## License
 GNU GPLv3
