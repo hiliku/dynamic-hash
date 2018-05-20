@@ -50,23 +50,23 @@ module.exports = {
   },
 
   // hash value with given salt
-  hashVal: (value, salt) => {
+  encrypt: (value, salt) => {
     let hash = crypto.createCipher(method, salt);
     let data = hash.update(value, 'utf-8', 'hex');
     data += hash.final('hex');
     return data;
   },
 
-  // reverse hash ot original value with given salt
-  getVal: (hash, salt) => { 
+  // reverse hash of original value with given salt
+  decrypt: (hash, salt) => { 
     const cipher = crypto.createDecipher(method, salt);
     let data = cipher.update(hash, 'hex', 'utf-8');
     data += cipher.final('utf-8');
     return data;
   },
 
-  // compare two values with given salt
-  checkVal: (value, hash, salt) => {
+  // compare two values (value and hash) with given salt
+  compare: (value, hash, salt) => {
     const cipher = crypto.createCipher(method, salt);
     let data = cipher.update(value, 'utf-8', 'hex');
     data += cipher.final('hex');
@@ -104,23 +104,23 @@ module.exports = {
   },
 
   // hash value with given salt
-  hashValSync: async (value, salt) => {
+  encryptSync: async (value, salt) => {
     let hash = crypto.createCipher(method, salt);
     let data = hash.update(value, 'utf-8', 'hex');
     data += hash.final('hex');
     return data;
   },
 
-  // reverse hash ot original value with given salt
-  getValSync: async (hash, salt) => { 
+  // reverse hash of original value with given salt
+  decryptSync: async (hash, salt) => { 
     const cipher = crypto.createDecipher(method, salt);
     let data = cipher.update(hash, 'hex', 'utf-8');
     data += cipher.final('utf-8');
     return data;
   },
 
-  // compare two values with given salt
-  checkValSync: async (value, hash, salt) => {
+  // compare two values (value and hash) with given salt
+  compareSync: async (value, hash, salt) => {
     const cipher = crypto.createCipher(method, salt);
     let data = cipher.update(value, 'utf-8', 'hex');
     data += cipher.final('hex');
