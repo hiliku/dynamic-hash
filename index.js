@@ -45,7 +45,7 @@ module.exports = {
     try {
       return JSON.parse(fs.readFileSync(saltFile, "utf8")).salt;
     } catch (err) {
-      console.log(err);
+      console.log('!!! Something is wrong! no current salt key...');
     }
   },
 
@@ -99,7 +99,7 @@ module.exports = {
     try {
       return JSON.parse(fs.readFileSync(saltFile, "utf8")).salt;
     } catch (err) {
-      console.log(err);
+      console.log('!!! Something is wrong! no current salt key...');
     }
   },
 
