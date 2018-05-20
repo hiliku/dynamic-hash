@@ -5,6 +5,7 @@ const fs = require('fs');
     // get the current salt
     const currentSalt = dynamicHash.genSalt().salt;
 
+    console.log('')
     console.log('-- starting securing DB process...');
     console.log('')
     // fetching all users from the example DB

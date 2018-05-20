@@ -14,6 +14,7 @@ const fs = require('fs');
     // replacing sensitive data with encrypted values with current salt
     currentUsers.map(value => value.fullName = dynamicHash.encrypt(value.fullName, currentSalt))
     // updated db:
+    console.log('')
     console.log('current users:')
     console.log(currentUsers)
     console.log('---------------------------------------------')
@@ -30,6 +31,7 @@ const fs = require('fs');
     // once you generate new salt - you must update your database
 
     console.log('-- starting migration...')
+    console.log('')
     // fetching all users from the example DB
     const users = currentUsers;
     // decrypting sensetive data
