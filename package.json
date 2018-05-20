@@ -1,6 +1,6 @@
 {
   "name": "dynamic-hash",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Generate a dynamic hash with random salt key",
   "main": "index.js",
   "scripts": {
