@@ -1,7 +1,7 @@
 {
   "name": "dynamic-hash",
-  "version": "1.0.6",
-  "description": "Generate a dynamic hash with random salt (hourly, daily and monthly created)",
+  "version": "1.0.7",
+  "description": "Generate a dynamic hash with random salt key",
   "main": "index.js",
   "scripts": {
     "test": "mocha || true"
@@ -11,6 +11,9 @@
     "dynamic",
     "hash",
     "salt",
+    "encrypt",
+    "decrypt",
+    "key",
     "crypto"
   ],
   "repository": {
