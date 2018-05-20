@@ -2,6 +2,7 @@
 Generate a dynamic hash with random salt.
 
 With Dynamic-Hash you can genrate local random salt, encrypt/decrypt and compare values with it.
+
 The package will generate a random salt object on local file-system and provide simple access and methods to encrypt/decrypt requested data with Advanced Encryption Standard (AES) of 256 bits.
 
 
@@ -61,6 +62,22 @@ const compareSync = await dynamicHash.compareSync(value, hash, salt); // Asyncro
 // hash = hash to decrypt
 // salt = current salt   
 ```
+## Funcionality
+**Method** | **Description** 
+--- | --- 
+genSalt() / genSaltSync() | Creating new local salt Object, will be stored in './salt/prase.json' path.
+getSalt() / getSaltSync() | Getting the current salt key.
+encrypt(value, salt) / encryptSync(value, salt) | Encrypt given value with current salt.
+decrypt(value, salt) / decryptSync(value, salt) | Decrypt given hash from current salt.
+compare(value, hash, salt) / compareSync(value, hash, salt) | Compare value and hash with given salt.
 
+
+## Examples
+To run the examples:
+```javascript
+$ node examples/example-secure.js
+$ node examples/example-migrate.js
+
+```
 ## License
 GNU GPLv3
