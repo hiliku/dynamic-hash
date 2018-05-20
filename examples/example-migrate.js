@@ -10,7 +10,7 @@ const fs = require('fs');
     let currentSalt = dynamicHash.genSalt().salt;
 
     // getting the current secured data
-    const currentUsers = JSON.parse(fs.readFileSync('example/db.json', 'utf8')).users;
+    const currentUsers = JSON.parse(fs.readFileSync('examples/db.json', 'utf8')).users;
     // replacing sensitive data with encrypted values with current salt
     currentUsers.map(value => value.fullName = dynamicHash.encrypt(value.fullName, currentSalt))
     // updated db:
