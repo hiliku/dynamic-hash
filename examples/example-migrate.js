@@ -15,7 +15,7 @@ const fs = require('fs');
         const currentUsers = JSON.parse(fs.readFileSync('examples/db.json', 'utf8')).users;
         try {
             // backing up current data into a backup_*.json file
-            const backup = dynamicHash.backup(JSON.stringify('currentUsers'),'json');
+            const backup = dynamicHash.backup(JSON.stringify(currentUsers),'json');
             if (backup) {
                 // replacing sensitive data with encrypted values with current salt
                 currentUsers.map(value => value.fullName = dynamicHash.encrypt(value.fullName, currentSalt))
