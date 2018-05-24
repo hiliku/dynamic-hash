@@ -3,6 +3,7 @@ const crypto = require("crypto");
 const fs = require("fs");
 
 const saltFolder = './salt/'; 
+const backupFolder = './backups/'; 
 const saltFile = `${saltFolder}prase.json`;
 const method = "aes-256-cbc";
 
@@ -40,12 +41,33 @@ module.exports = {
     return data;
   },
 
+  backup: (data,type) => {
+    // generating backup folder if not exist
+    if (!fs.existsSync(backupFolder)) {
+      console.log('-- ./backups/ Directory does not exist, generating...');
+      fs.mkdirSync(backupFolder);
+    }
+    try {
+      const currentSalt =  JSON.parse(fs.readFileSync(saltFile, "utf8")).salt;
+      try {
+        fs.writeFileSync(`${backupFolder}backup_${currentSalt}.${type}`,data);
+        return true;
+      } catch (err) {
+        console.log('!!! Something is wrong! could not generate backup file...' +err);
+        return false;
+      }
+    } catch (err) {
+      console.log('!!! Something is wrong! no current salt key...');
+      return false;
+    }
+  },
   // get current salt prase
   getSalt: () => {
     try {
       return JSON.parse(fs.readFileSync(saltFile, "utf8")).salt;
     } catch (err) {
       console.log('!!! Something is wrong! no current salt key...');
+      return err;
     }
   },
 
@@ -74,7 +96,7 @@ module.exports = {
   },
   
   // generate random salt string
-  genSaltSync: async () => {
+  genSaltAsync: async () => {
     const salt = genHash();
     const time = Date.now();
     const data = { salt, time };
@@ -94,8 +116,28 @@ module.exports = {
     return data;
   },
 
+  backupAsync: async (data,type) => {
+    // generating backup folder if not exist
+    if (!fs.existsSync(backupFolder)) {
+      console.log('-- ./backups/ Directory does not exist, generating...');
+      fs.mkdirSync(backupFolder);
+    }
+    try {
+      const currentSalt =  await JSON.parse(fs.readFileSync(saltFile, "utf8")).salt;
+      try {
+        await fs.writeFileSync(`${backupFolder}backup_${currentSalt}.${type}`,data);
+        return true;
+      } catch (err) {
+        console.log('!!! Something is wrong! could not generate backup file...' +err);
+        return false;
+      }
+    } catch (err) {
+      console.log('!!! Something is wrong! no current salt key...');
+      return false;
+    }
+  },
   // get current salt prase
-  getSaltSync: async () => {
+  getSaltAsync: async () => {
     try {
       return JSON.parse(fs.readFileSync(saltFile, "utf8")).salt;
     } catch (err) {
@@ -104,7 +146,7 @@ module.exports = {
   },
 
   // hash value with given salt
-  encryptSync: async (value, salt) => {
+  encryptAsync: async (value, salt) => {
     let hash = crypto.createCipher(method, salt);
     let data = hash.update(value, 'utf-8', 'hex');
     data += hash.final('hex');
@@ -112,7 +154,7 @@ module.exports = {
   },
 
   // reverse hash of original value with given salt
-  decryptSync: async (hash, salt) => { 
+  decryptAsync: async (hash, salt) => { 
     const cipher = crypto.createDecipher(method, salt);
     let data = cipher.update(hash, 'hex', 'utf-8');
     data += cipher.final('utf-8');
@@ -120,7 +162,7 @@ module.exports = {
   },
 
   // compare two values (value and hash) with given salt
-  compareSync: async (value, hash, salt) => {
+  compareAsync: async (value, hash, salt) => {
     const cipher = crypto.createCipher(method, salt);
     let data = cipher.update(value, 'utf-8', 'hex');
     data += cipher.final('hex');
