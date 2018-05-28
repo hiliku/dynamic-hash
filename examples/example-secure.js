@@ -16,7 +16,10 @@ const fs = require('fs');
     console.log('---------------------------------------------')
     console.log('')
     // replacing sensitive data with encrypted values with current salt
-    users.map(user => user.fullName = dynamicHash.encrypt(user.fullName, currentSalt));
+    users.map(user => {
+        user.fullName = dynamicHash.encrypt(user.fullName, currentSalt);
+        user.email = dynamicHash.encrypt(user.email, currentSalt);
+    });
     console.log('-- new secured DB:');
     // updated db:
     console.log(users)
